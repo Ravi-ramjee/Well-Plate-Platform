@@ -1,21 +1,27 @@
 # -*- coding: utf-8 -*-
 
 # Hwang Lab, University of Pennsylvania School of Dental Medicine
-# Author: Ravikiran Ramjee, University of Pennsylvania SEAS
+# Author: Ravikiran Ramjee, University of Pennsylvania Department of Bioengineering
 
 import serial
+from datetime import datetime
 import time
 from threading import Thread
+import xlsxwriter
 
 
 def setextractioninterval(x):
     # Extraction Interval. A value will be extracted in an array for analysis at the interval specified below:
     global extractioninterval
-    extractioninterval = x
+    extractioninterval = abs(x)
 
 
 def dataextraction():
-    # Serial port that the pH meter is connected to. Will likely be COM3/COM4
+    # Data needs to be saved to an Excel file. So, the workbook is created
+    workbook = xlsxwriter.Workbook("pH_Data_" + str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ".xlsx")
+    ws = workbook.add_worksheet()
+
+    # Serial port that the pH meter is connected to. Will likely be in the form COMX for Windows
     # To find this port, connect the device and go to device manager
     port = "COM4"
 
@@ -33,10 +39,13 @@ def dataextraction():
             phvalue = data[0:4].decode('UTF-8')
             if phvalue != '':
                 phdata.append(float(phvalue))
+                ws.write(len(phdata) - 1, 0, datetime.now().strftime('%H:%M:%S.%f'))
+                ws.write(len(phdata) - 1, 1, phvalue)
             print(phdata)
             time.sleep(extractioninterval)
             if extractionbreak == 1:
-                break
+                workbook.close()
+                break  # Break loop if stop condition is set to 1
         except ValueError:
             print("Device is off or not connected!")
 
@@ -52,6 +61,7 @@ def startdataextraction():
 
 
 def stopdataextraction():
+    # Break the thread target loop
     global extractionbreak
     extractionbreak = 1
 
@@ -59,10 +69,17 @@ def stopdataextraction():
 #######################################################################################################################
 # Test Functions Below, Ignore
 def testprintdata():
+    workbook = xlsxwriter.Workbook("test" + str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ".xlsx")
+    ws = workbook.add_worksheet()
+    data = []
     while True:
-        print([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])
+        data.append("hello")
+        print("hello")
+        ws.write(len(data) - 1, 0, datetime.now().strftime('%H:%M:%S.%f'))
+        ws.write(len(data) - 1, 1, "hello")
         time.sleep(2)
         if stop == 1:
+            workbook.close()
             break  # Break while loop when stop = 1
 
 
