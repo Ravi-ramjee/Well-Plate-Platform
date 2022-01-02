@@ -48,8 +48,8 @@ ExtractionEvent = ttk.Entry(frm)
 SetExtractionButton = ttk.Button(frm, text="Set Interval", command=setintendedextractioninterval)
 
 # Items that start and stop the extraction of data from the meter
-BeginDataExtraction = ttk.Button(frm, text="Begin Extraction", command=ph.startprintdata)
-StopDataExtraction = ttk.Button(frm, text="Stop Extraction", command=ph.stopprintdata)
+BeginDataExtraction = ttk.Button(frm, text="Begin Extraction", command=ph.startdataextraction)
+StopDataExtraction = ttk.Button(frm, text="Stop Extraction", command=ph.stopdataextraction)
 
 # Grouped items that set the speed of the peristaltic pump
 MotorLabel = ttk.Label(frm, text="Speed - Peristaltic Pump", borderwidth=1, relief="solid")

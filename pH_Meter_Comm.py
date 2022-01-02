@@ -3,6 +3,7 @@
 # Hwang Lab, University of Pennsylvania School of Dental Medicine
 # Author: Ravikiran Ramjee, University of Pennsylvania Department of Bioengineering
 
+# Imports
 import serial
 from datetime import datetime
 import time
@@ -18,7 +19,7 @@ def setextractioninterval(x):
 
 def dataextraction():
     # Data needs to be saved to an Excel file. So, the workbook is created
-    workbook = xlsxwriter.Workbook("pH_Data_" + str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ".xlsx")
+    workbook = xlsxwriter.Workbook("pH_Data_" + str(datetime.now().strftime("%Y_%m_%d_%H:%M:%S")) + ".xlsx")
     ws = workbook.add_worksheet()
 
     # Serial port that the pH meter is connected to. Will likely be in the form COMX for Windows
@@ -69,7 +70,7 @@ def stopdataextraction():
 #######################################################################################################################
 # Test Functions Below, Ignore
 def testprintdata():
-    workbook = xlsxwriter.Workbook("test" + str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ".xlsx")
+    workbook = xlsxwriter.Workbook("test_" + str(datetime.now().strftime("%Y_%m_%d_%H:%M:%S")) + ".xlsx")
     ws = workbook.add_worksheet()
     data = []
     while True:
