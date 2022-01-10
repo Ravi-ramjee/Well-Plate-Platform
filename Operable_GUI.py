@@ -12,6 +12,7 @@ from tkinter import ttk
 # pH Meter: Used to set the interval that the meter takes measurements using the GUI
 # The default interval is one second if left blank
 def setintendedextractioninterval():
+    # Ensures the extraction interval is set to 1 second if the text entry is left blank
     if ExtractionEvent.get() != '':
         temp1 = int(ExtractionEvent.get())
     else:
@@ -26,7 +27,7 @@ def getintendedextractioninterval():
         return str(ExtractionEvent.get())
 
 
-# The tkinter GUI library commands to create the simple GUI below:
+# The tkinter library commands to create the simple GUI below:
 
 # Establishes the main window used for the interface
 root = Tk(className=" Operable GUI")
@@ -48,8 +49,8 @@ ExtractionEvent = ttk.Entry(frm)
 SetExtractionButton = ttk.Button(frm, text="Set Interval", command=setintendedextractioninterval)
 
 # Items that start and stop the extraction of data from the meter
-BeginDataExtraction = ttk.Button(frm, text="Begin Extraction", command=ph.startdataextraction)
-StopDataExtraction = ttk.Button(frm, text="Stop Extraction", command=ph.stopdataextraction)
+BeginDataExtraction = ttk.Button(frm, text="Begin Extraction", command=ph.startprintdata)
+StopDataExtraction = ttk.Button(frm, text="Stop Extraction", command=ph.stopprintdata)
 
 # Grouped items that set the speed of the peristaltic pump
 MotorLabel = ttk.Label(frm, text="Speed - Peristaltic Pump", borderwidth=1, relief="solid")

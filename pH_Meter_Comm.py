@@ -22,7 +22,7 @@ def dataextraction():
     workbook = xlsxwriter.Workbook("pH_Data_" + str(datetime.now().strftime("%Y_%m_%d_%H:%M:%S")) + ".xlsx")
     ws = workbook.add_worksheet()
 
-    # Serial port that the pH meter is connected to. Will likely be in the form COMX for Windows
+    # Serial port that the pH meter is connected to. Will likely be in the form "COMX" for Windows
     # To find this port, connect the device and go to device manager
     port = "COM4"
 
@@ -35,17 +35,18 @@ def dataextraction():
     while True:
         try:
             data = ser.readline()
-            # Formatted data for the specific meter by truncating for the sole pH value
+            # Formatted data for the specific pH meter by truncating for the pH value
             # This format will change for different meters
+            # Value is a byte string so decode it before using
             phvalue = data[0:4].decode('UTF-8')
-            if phvalue != '':
+            if phvalue != '':  # No blank pH value will be counted as legitimate data
                 phdata.append(float(phvalue))
-                ws.write(len(phdata) - 1, 0, datetime.now().strftime('%H:%M:%S.%f'))
+                ws.write(len(phdata) - 1, 0, datetime.now().strftime('%H:%M:%S'))
                 ws.write(len(phdata) - 1, 1, phvalue)
             print(phdata)
             time.sleep(extractioninterval)
             if extractionbreak == 1:
-                workbook.close()
+                workbook.close()  # Save excel workbook with written data
                 break  # Break loop if stop condition is set to 1
         except ValueError:
             print("Device is off or not connected!")
@@ -73,11 +74,13 @@ def testprintdata():
     workbook = xlsxwriter.Workbook("test_" + str(datetime.now().strftime("%Y_%m_%d_%H:%M:%S")) + ".xlsx")
     ws = workbook.add_worksheet()
     data = []
+    i = 0
     while True:
-        data.append("hello")
-        print("hello")
-        ws.write(len(data) - 1, 0, datetime.now().strftime('%H:%M:%S.%f'))
-        ws.write(len(data) - 1, 1, "hello")
+        data.append(i)
+        print(i)
+        ws.write(len(data) - 1, 0, datetime.now().strftime('%H:%M:%S'))
+        ws.write(len(data) - 1, 1, i)
+        i += 1
         time.sleep(2)
         if stop == 1:
             workbook.close()
