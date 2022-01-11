@@ -35,7 +35,7 @@ def setintendedspeed():
     dmx.setspeed(temp2)
 
 
-dmx.startstage
+dmx.startstage()
 
 # The tkinter library commands to create the simple GUI below:
 
