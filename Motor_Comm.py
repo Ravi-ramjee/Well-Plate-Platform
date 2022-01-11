@@ -12,20 +12,25 @@ from threading import Thread
 stage = Arcus.PerformaxDMXJSAStage()
 
 def startstage():
-    print(Arcus.list_usb_performax_devices())
+    print("Starting Motor Connection...")
+    print(stage.query("CUR=700"))
 
 def stopstage():
+    print("Stopping Motor Connection...")
     stage.close()
     
 def setspeed(x):
     global speed
-    speed = abs(x)
+    speed = x
 
 def movement():
 
-    stage.query("HSPD={}".format(speed))
-    print(stage.query("J+"))
-
+    stage.query("HSPD={}".format(abs(speed)))
+    if speed < 0:
+        print(stage.query("J-"))
+    else:
+        print(stage.query("J+"))
+    
     while True:
         if movementbreak == 1:
             print(stage.query("STOP"))

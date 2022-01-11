@@ -35,7 +35,6 @@ def setintendedspeed():
     dmx.setspeed(temp2)
 
 
-print("Starting Stage...")
 dmx.startstage
 
 # The tkinter library commands to create the simple GUI below:
@@ -48,7 +47,7 @@ frm = ttk.Frame(root, relief=RAISED, borderwidth=1)
 frm.pack(fill=BOTH, expand=True)
 
 # Quit button with the command that exits the application
-QuitButton = ttk.Button(root, text="Quit", command=lambda:[print("Stopping Stage..."), dmx.stopstage, root.destroy()])
+QuitButton = ttk.Button(root, text="Quit", command=lambda:[dmx.stopstage, root.destroy()])
 # Packs the quit button into the main root interface
 QuitButton.pack()
 
