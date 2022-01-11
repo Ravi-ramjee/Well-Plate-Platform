@@ -5,6 +5,7 @@
 
 # Imports
 import pH_Meter_Comm as ph
+import Motor_Comm as dmx
 from tkinter import *
 from tkinter import ttk
 
@@ -26,6 +27,16 @@ def getintendedextractioninterval():
     else:
         return str(ExtractionEvent.get())
 
+def setintendedspeed():
+    if SpeedEvent.get() != '':
+        temp2 = int(SpeedEvent.get())
+    else:
+        temp2 = 100
+    dmx.setspeed(temp2)
+
+
+print("Starting Stage...")
+dmx.startstage
 
 # The tkinter library commands to create the simple GUI below:
 
@@ -36,10 +47,8 @@ root = Tk(className=" Operable GUI")
 frm = ttk.Frame(root, relief=RAISED, borderwidth=1)
 frm.pack(fill=BOTH, expand=True)
 
-# root.geometry("500x500")
-
 # Quit button with the command that exits the application
-QuitButton = ttk.Button(root, text="Quit", command=root.destroy)
+QuitButton = ttk.Button(root, text="Quit", command=lambda:[print("Stopping Stage..."), dmx.stopstage, root.destroy()])
 # Packs the quit button into the main root interface
 QuitButton.pack()
 
@@ -55,11 +64,11 @@ StopDataExtraction = ttk.Button(frm, text="Stop Extraction", command=ph.stopprin
 # Grouped items that set the speed of the peristaltic pump
 MotorLabel = ttk.Label(frm, text="Speed - Peristaltic Pump", borderwidth=1, relief="solid")
 SpeedEvent = ttk.Entry(frm)
-SetSpeedButton = ttk.Button(frm, text="Set Speed")
+SetSpeedButton = ttk.Button(frm, text="Set Speed", command = setintendedspeed)
 
 # Items that start and stop the motor operation
-BeginMotor = ttk.Button(frm, text="Begin Motor")
-StopMotor = ttk.Button(frm, text="Stop Motor")
+BeginMotor = ttk.Button(frm, text="Begin Motor", command = dmx.startmovement)
+StopMotor = ttk.Button(frm, text="Stop Motor", command = dmx.stopmovement)
 
 # Packs the pH and motor GUI items to the frame
 ExtractionLabel.pack(side=TOP)

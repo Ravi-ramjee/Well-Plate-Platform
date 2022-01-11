@@ -71,7 +71,7 @@ def stopdataextraction():
 #######################################################################################################################
 # Test Functions Below, Ignore
 def testprintdata():
-    workbook = xlsxwriter.Workbook("test_" + str(datetime.now().strftime("%Y_%m_%d_%H:%M:%S")) + ".xlsx")
+    workbook = xlsxwriter.Workbook("test-" + str(datetime.now().strftime("%Y-%m-%d-%H-%M-%S")) + ".xlsx")
     ws = workbook.add_worksheet()
     data = []
     i = 0
