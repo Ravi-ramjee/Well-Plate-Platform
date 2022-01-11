@@ -3,7 +3,7 @@ Python software to communicate with a peristaltic pump and pH meter to help inve
 
 NOTE: The Python code provided in this repository was made for a specific pump and pH meter, the ARCUS NEMA-17 Stepper Motor DMX-J-SA-123 (https://www.arcus-technology.com/products/integrated-stepper-motors/nema-17-integrated-usb-stepper-basic/) and the Mettler Toledo SevenCompact pH Meter (https://www.mt.com/us/en/home/products/Laboratory_Analytics_Browse/pH-meter/benchtop-pH-meter/sevencompact/S220-Meter.html) respectively. Constructing the platform with different equipment will involve significant modifications to the programs provided. 
 
-Required Packages: Tkinter, Pyserial, Datetime, Threading, Xlsxwriter, Pylablib
+Additional Required Packages: Pyserial, Xlsxwriter and Pylablib
 
 Instructions: 
 1. From the ARCUS website, install necessary drivers for the motor found in the software section of the product page (https://www.arcus-technology.com/products/integrated-stepper-motors/nema-17-integrated-usb-stepper-basic/). The DLLs included in this repository need these drvers to work 
