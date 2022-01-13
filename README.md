@@ -12,7 +12,7 @@ Instructions:
 4. Using device manager, identify which serial port the pH meter is plugged into, usually "COM3" or "COM4" 
 5. Download packages and repository files. Replace the port in pH_Meter_Comm.py with the one found in step 4. Refer to comments in the code itself
 6. Run Operable_GUI.py 
-7. Enter a measurment interval for the pH meter and speed for the motor before starting the data extraction and motor movement 
+7. Enter a measurment interval for the pH meter and speed for the motor before starting the data extraction and motor movement. Setting the motor to a negative speed will change the direction of the motor from the default (clockwise) direction
 8. "Stop Extraction" button on the GUI will save the data to a spreadsheet for analysis 
 9. Manufacturer constraints prevent the speed of the motor from being changed while it is moving. So, to change the speed, set the new speed and restart motor movement. The new speed will then take effect. 
 
