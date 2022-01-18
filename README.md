@@ -1,4 +1,4 @@
-# Biofilm-Platform-Communication-Protocol-HwangLab
+# Well-Plate-Platform
 Python software to communicate with a peristaltic pump and pH meter to help investigate dynamic biofilm formation via a simple Windows GUI (Hwang Lab: Center for Innovation &amp; Precision Dentistry, School of Dental Medicine, School of Engineering and Applied Sciences, University of Pennsylvania)
 
 NOTE: The Python code provided in this repository was made for a specific pump and pH meter, the ARCUS NEMA-17 Stepper Motor DMX-J-SA-123 (https://www.arcus-technology.com/products/integrated-stepper-motors/nema-17-integrated-usb-stepper-basic/) and the Mettler Toledo SevenCompact pH Meter (https://www.mt.com/us/en/home/products/Laboratory_Analytics_Browse/pH-meter/benchtop-pH-meter/sevencompact/S220-Meter.html) respectively. Constructing the platform with different equipment will involve significant modifications to the programs provided. 
